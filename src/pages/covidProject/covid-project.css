@@ -1,0 +1,140 @@
+/*bigger devices*/
+/*Dashboard*/
+.covidDashboard{
+    display: flex;
+    height: 100dvh;
+    background: linear-gradient(270deg, #43cea2, #185a9d, #3a6073);
+}
+.divider {
+    width: 1px;
+    background-color: #fff; 
+    height: 80%; 
+    margin: auto; 
+}
+.vaccineOption, .patientOption{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.vaccineOption p, .patientOption p{
+    color: #fff;
+    margin-top: 16px;
+}
+.fa-hospital-user, .fa-vial-virus{
+    width: 80px;
+    height: 80px;
+    color: #fff;
+}
+.patientOption .portalButton, .vaccineOption .portalButton{
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #000;
+}
+.vaccineOption .portalButton{
+    background: linear-gradient(0deg, #1dd1a1, #0d755b); 
+}
+.patientOption .portalButton{
+    background: linear-gradient(0deg, #3a7bd5, #3a6073);
+}
+.patientOption .portalButton:hover, .vaccineOption .portalButton:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px -1.5px rgba(255, 255, 255, 0.6);
+    color: #fff;
+}
+.portalButton{
+    padding: 14px 28px !important; 
+    font-size: 18px ; 
+    height: 56px ; 
+}
+
+/*Widgets section*/
+.widget-largeScreen{
+    display: flex;
+    justify-content: right;
+    gap: 1rem;
+    margin-right: 2rem;
+}
+.add-patient-btn, .add-dose-btn, .add-vaccine-btn, .edit-btn{
+    width: 10rem;
+}
+.add-dose-btn:hover{
+    background-color: rgb(219, 143, 0) !important;
+}
+.patient-vaccine-table{
+    margin: 4rem;
+    
+}
+.portal-content-mediumScreen{
+    display: none;
+}
+
+/*Laptop Views*/
+@media only screen and (min-width: 992px ) and (max-width: 1199px){
+    /*Widgets section*/
+    .portal-content-mediumScreen{
+        display: none;
+    }
+}
+
+/*Tablet view*/
+@media only screen and (min-width: 768px) and (max-width: 991px){
+    /*Dashboard*/
+    .covidDashboard{
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(0deg, #43cea2, #185a9d, #3a6073) !important;
+    }
+    .fa-hospital-user, .fa-syringe{
+        width: 64px;
+        height: 64px;
+    }
+    .portalButton{
+        padding: 14px 28px !important; 
+        font-size: 18px !important; 
+        height: 56px !important;
+    }
+    .divider{
+        width: 80% !important;
+        height: 1px !important;
+    }
+
+    /*Widget section*/
+    .portal-content-largeScreen{
+        display: none;
+    }
+    .portal-content-mediumScreen{
+        display: initial;
+    }
+}
+
+/*Mobile Device View*/
+@media only screen and (max-width: 767px){
+    /*Dashboard*/
+    .covidDashboard{
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(0deg, #43cea2, #185a9d, #3a6073) !important;
+    }
+    .fa-hospital-user, .fa-syringe{
+        width: 48px;
+        height: 48px;
+    }
+    .portalButton{
+        padding: 10px 20px !important; 
+        font-size: 14px !important; 
+        height: 40px !important; 
+    }
+    .divider{
+        width: 80% !important;
+        height: 1px !important;
+    }
+    /*Widget section*/
+    .portal-content-largeScreen{
+        display: none;
+    }
+    .portal-content-mediumScreen{
+        display: initial;
+    }
+}
