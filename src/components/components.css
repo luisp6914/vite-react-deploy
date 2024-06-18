@@ -155,6 +155,24 @@
 .fa-cloud{
     color: #e36209;
 }
+/* Styles for the horizontal ribbon */
+.ribbon {
+    position: absolute;
+    top: 0;
+    right: -14px;
+    width: 150px;
+    background-color: #283593;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.ribbon span {
+    display: block;
+}
+
 /*Setting the Text inside the cloud icon*/
 .icon-container {
     position: relative;
