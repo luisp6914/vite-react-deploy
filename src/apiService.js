@@ -32,10 +32,11 @@ export const getVaccines = async () =>{
 
 export const addVaccine = async (vaccineData) => {
     try {
+        console.log(vaccineData, "in apiService file");
         const response = await axios.post(`${baseURL}/vaccines`, vaccineData);
         return response.data;
     } catch (error) {
-        console.error("Failed to add vaccine", error);
+        console.error("Failed to add vaccine [API Service file]", error);
     }
 };
 

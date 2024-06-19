@@ -35,6 +35,7 @@ function AddVaccineModal(){
             dosesRemaining: dosesReceivedValue,
             dosesRequired,
         };
+        console.log(newVaccine, "In AddVaccineModal.tsx file");
         
         try {
             await addVaccine(newVaccine);
@@ -44,7 +45,7 @@ function AddVaccineModal(){
             setDosesRequired(1); 
             setErrorMessage('');
         } catch (error) {
-            console.error("Failed to add vaccine", error);
+            console.error("Failed to add vaccine [AddVaccineModal.tsx File]", error);
         }
     };
 
