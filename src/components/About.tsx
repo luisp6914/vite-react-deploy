@@ -6,7 +6,7 @@ function About() {
 
       <div className="profileAndParagraph">
           <div className="profile">
-            <img src="src/images/me1.jpg" className="bd-placeholder-img img-thumbnail rounded" alt="Image of me" width={250} height={250} style={{border: 'none'}}></img>
+            <img src="../images/me1.jpg" className="bd-placeholder-img img-thumbnail rounded" alt="Image of me" width={250} height={250} style={{border: 'none'}}></img>
           
             <div className="info">
                 <p><b>Name:</b> Luis Perez</p>
