@@ -37,7 +37,7 @@ function Projects(){
         discription:
           "Developed an online system to help a hypothetical local hospital for its COVID vaccination effort. The system will keep track of both patient and vaccine information for the hospital",
         path: "/covid-project",
-        finished: false,
+        finished: true,
       },
       {
         class: "pcPartPicker",

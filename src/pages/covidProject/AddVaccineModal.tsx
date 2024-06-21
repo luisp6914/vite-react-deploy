@@ -3,7 +3,11 @@ import { addVaccine } from "../../apiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-function AddVaccineModal(){
+interface AddVaccineModalProps{
+    onVaccineAdded: () => void;
+}
+
+function AddVaccineModal({onVaccineAdded}: AddVaccineModalProps){
     //State variables 
     const [name, setName] = useState("");
     const [doseIntervals, setDoseIntervals] = useState("");
@@ -44,6 +48,7 @@ function AddVaccineModal(){
             setDosesReceived(''); 
             setDosesRequired(1); 
             setErrorMessage('');
+            onVaccineAdded();
         } catch (error) {
             console.error("Failed to add vaccine [AddVaccineModal.tsx File]", error);
         }

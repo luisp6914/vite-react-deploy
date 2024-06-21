@@ -4,13 +4,30 @@ import { useLocation } from "react-router-dom";
 import AddVaccineModal from "./AddVaccineModal";
 import AddDosesModal from "./AddDosesModal";
 import FetchedVaccinesTable from "./FetchedVaccinesTable";
+import { useState, useEffect } from "react";
+import { getVaccines } from "../../apiService";
 
 function Widgets(){
     const location = useLocation();
     const currentPath = location.pathname;
+    const [vaccines, setVaccines] = useState([]);
+
+    //Getting the list of vaccines
+    const fetchVaccines = async () => {
+        try {
+            const response = await getVaccines();
+            setVaccines(response);
+        } catch (error) {
+            console.error("Error fetching vaccines [Widgets.tsx file line 18]", error);
+        }
+    }
+
+    useEffect(() =>{
+        fetchVaccines();
+    }, []);
 
     const vaccineButtons = [
-        <AddVaccineModal key="addVacineModal"/>,
+        <AddVaccineModal key="addVacineModal" onVaccineAdded={fetchVaccines}/>,
         <AddDosesModal key="addDoseModal"/>
     ];
 
@@ -23,7 +40,6 @@ function Widgets(){
     return(
         <>
             <div className="portal-content-largeScreen">
-
                 <div className="widget-largeScreen">
                     {currentPath === "/covid-project/patients" ?  patientButton  : vaccineButtons}
                     <form className="d-flex" role="search" action="">
@@ -37,7 +53,7 @@ function Widgets(){
                 </div>
 
                 <div className="patient-vaccine-table">
-                    {currentPath === "/covid-project/patients" ?  <h1>patients</h1>  : <FetchedVaccinesTable/>}
+                    {currentPath === "/covid-project/patients" ?  <h1>patients</h1>  : <FetchedVaccinesTable vaccines={vaccines}/>}
                 </div>
 
             </div>

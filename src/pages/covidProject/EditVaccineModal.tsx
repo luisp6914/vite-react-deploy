@@ -23,7 +23,7 @@ function EditVaccineModal ({vaccine, onUpdate}: EditVaccineModalProps){
             await updateVaccine(vaccine.id, {name, doseIntervals});
             onUpdate();
         } catch (error) {
-            console.error('Failed to update vaccine', error);
+            console.error('Failed to update vaccine [EditVaccineModal.tsx file line 23]', error);
         }
     };
 
