@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { addDoses, getVaccines } from "../../apiService";
+import { addDoses } from "../../apiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,24 +8,19 @@ interface Vaccine {
     name: string;
 }
 
-function AddDosesModal() {
-  const [vaccines, setVaccines] = useState<Vaccine[]>([]);
+interface AddDosesModalProps {
+  fetchVaccines: () => void;
+  vaccines: Vaccine[];
+}
+
+function AddDosesModal({ fetchVaccines, vaccines }: AddDosesModalProps) {
   const [selectedVaccine, setSelectedVaccine] = useState("");
   const [doses, setDoses] = useState("");
 
   /*Fetching the vaccines*/
   useEffect(() => {
     fetchVaccines();
-  }, []);
-
-  const fetchVaccines = async () => {
-    try {
-        const response = await getVaccines();
-        setVaccines(response);
-    } catch (error) {
-        console.error("Error fetching vaccines", error);
-    }
-  };
+  }, [fetchVaccines]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,15 +35,13 @@ function AddDosesModal() {
         await addDoses(selectedVaccine, dosesNum);
         setSelectedVaccine("");
         setDoses("");
+        fetchVaccines();
     } catch (error) {
-        console.error("Failed to add doses", error);
+        console.error("Failed to add doses [AddDosesModal.tsx file line 44]", error);
     }
   };
   
-  const handleDosesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setDoses(value);
-  }
+  
 
   return (
     <>
@@ -82,13 +75,13 @@ function AddDosesModal() {
                         </div>
                         {/*Label for getting Doses from user*/}
                         <div className="form-floating mb-3">
-                            <input type="text" className="form-control" id="doses" placeholder="Add Doses" value={doses} onChange={handleDosesChange} required />
+                            <input type="text" className="form-control" id="doses" placeholder="Add Doses" value={doses} onChange={(e) => setDoses(e.target.value)} required />
                             <label htmlFor="doses" className="col-form-label floatingInput">Add Doses</label>
                         </div>
                         {/*Footer of the modal*/}
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-primary">Add Doses</button>
+                            <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Add Doses</button>
                         </div>
                     </form>
                 </div>

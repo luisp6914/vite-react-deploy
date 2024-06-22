@@ -43,10 +43,10 @@ export const addVaccine = async (vaccineData) => {
 
 export const addDoses = async (vaccineId, doses) => {
     try {
-        const response = await axios.post(`${baseURL}/vaccine/addDoses`, {vaccineId, doses});
+        const response = await axios.post(`${baseURL}/vaccines/addDoses`, {vaccineId, doses});
         return response.data;
     } catch (error) {
-        console.error("Failed to add doses", error);
+        console.error("Failed to add doses [apiService.js file line 49]", error);
     }
 };
 

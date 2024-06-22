@@ -14,9 +14,10 @@ interface Vaccine {
 
 interface FetchedVaccinesTableProps {
     vaccines: Vaccine[];
+    fetchVaccines: () => void;
 }
 
-function FetchedVaccinesTable({ vaccines }: FetchedVaccinesTableProps) {
+function FetchedVaccinesTable({ vaccines, fetchVaccines }: FetchedVaccinesTableProps) {
     const [currentPage, setCurrentPage] = useState(1);
     const vaccinesPerPage = 15;
 
@@ -61,9 +62,7 @@ function FetchedVaccinesTable({ vaccines }: FetchedVaccinesTableProps) {
                                         name: vaccine.name,
                                         doseIntervals: vaccine.doseIntervals,
                                     }}
-                                    onUpdate={function (): void {
-                                        throw new Error("Function not implemented.");
-                                    }}
+                                    onUpdate={fetchVaccines}
                                 />
                             </td>
                         </tr>

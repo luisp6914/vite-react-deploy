@@ -11,7 +11,7 @@ function Footer() {
           </a>
         </li>
         <li className="nav-item repoLink">
-          <a href="https://github.com/luisp6914/reactPortfolioProject" className="nav-link px-2 ">
+          <a href="https://github.com/luisp6914" className="nav-link px-2 ">
             <FontAwesomeIcon icon={faGithubSquare} style={{width: '40px', height: '40px', color: '#8a63d2'}}></FontAwesomeIcon>
           </a>
         </li>

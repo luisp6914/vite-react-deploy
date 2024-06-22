@@ -67,14 +67,14 @@
     
 }
 .portal-content-mediumScreen{
-    display: none;
+    /* display: none; */
 }
 
 /*Laptop Views*/
 @media only screen and (min-width: 992px ) and (max-width: 1199px){
     /*Widgets section*/
     .portal-content-mediumScreen{
-        display: none;
+        /* display: none; */
     }
 }
 
@@ -102,10 +102,10 @@
 
     /*Widget section*/
     .portal-content-largeScreen{
-        display: none;
+        /* display: none; */
     }
     .portal-content-mediumScreen{
-        display: initial;
+        /* display: initial; */
     }
 }
 
@@ -132,9 +132,9 @@
     }
     /*Widget section*/
     .portal-content-largeScreen{
-        display: none;
+        /* display: none; */
     }
     .portal-content-mediumScreen{
-        display: initial;
+        /* display: initial; */
     }
 }

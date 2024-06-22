@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { updateVaccine } from "../../apiService";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,13 +15,25 @@ interface EditVaccineModalProps {
 function EditVaccineModal ({vaccine, onUpdate}: EditVaccineModalProps){
     const [name, setName] = useState(vaccine.name);
     const [doseIntervals, setDoseIntervals] = useState(vaccine.doseIntervals);
+    const [originalDoseIntervals, setOriginalDoseIntervals] = useState(vaccine.doseIntervals);
+
+    useEffect(() => {
+        setOriginalDoseIntervals(vaccine.doseIntervals);
+    }, [vaccine.doseIntervals]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        const doseIntervalsNum = Number(doseIntervals);
+        if (isNaN(doseIntervalsNum) || doseIntervalsNum < 0) {
+            setDoseIntervals(originalDoseIntervals);
+            alert("Please enter a valid non-negative numeric value for Dose Intervals.");
+            return;
+        }
         try {
             await updateVaccine(vaccine.id, {name, doseIntervals});
             onUpdate();
+            
         } catch (error) {
             console.error('Failed to update vaccine [EditVaccineModal.tsx file line 23]', error);
         }
@@ -59,7 +71,7 @@ function EditVaccineModal ({vaccine, onUpdate}: EditVaccineModalProps){
                                 {/*Footer of the modal*/}
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary">Edit Vaccine</button>
+                                    <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Edit Vaccine</button>
                                 </div>
                             </form>
                         </div>
