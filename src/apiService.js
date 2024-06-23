@@ -30,6 +30,16 @@ export const getVaccines = async () =>{
     }
 };
 
+export const getVaccineById = async (id) => {
+    try {
+        console.log("apiServices fiel [Line 35]", id);
+        const response = await axios.get(`${baseURL}/vaccines/getVaccine/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error(`Error fetching vaccine by ID: ${id}`, error)
+    }
+}
+
 export const addVaccine = async (vaccineData) => {
     try {
         //VaccineData
@@ -52,7 +62,7 @@ export const addDoses = async (vaccineId, doses) => {
 
 export const updateVaccine = async (vaccineId, updateData) => {
     try {
-        const response = await axios.put(`${baseURL}/vaccines/${vaccineId}`, updateData);
+        const response = await axios.put(`${baseURL}/vaccines/editVaccine/${vaccineId}`, updateData);
         return response.data;
     } catch (error) {
         console.error("Failed to update vaccine", error);

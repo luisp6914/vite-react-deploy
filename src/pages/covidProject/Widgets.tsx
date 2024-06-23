@@ -30,7 +30,7 @@ function Widgets(){
     const vaccineButtons = [
         <AddVaccineModal key="addVacineModal" onVaccineAdded={fetchVaccines}/>,
         <AddDosesModal key="addDoseModal" fetchVaccines={fetchVaccines} vaccines={vaccines}/>,
-        <FindVaccineModal key="findVaccineModal"/>
+        <FindVaccineModal key="findVaccineModal" onVaccineFound={(vaccine) => console.log("[Widget.tsx file line 33]",vaccine)}/>
     ];
 
     const patientButton = [
