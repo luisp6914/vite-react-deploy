@@ -64,8 +64,12 @@
 }
 .patient-vaccine-table{
     margin: 4rem;
-    
 }
+.table th, .table td{
+    text-align: center;
+}
+
+
 .portal-content-mediumScreen{
     /* display: none; */
 }

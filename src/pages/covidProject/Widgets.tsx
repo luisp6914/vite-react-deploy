@@ -3,15 +3,17 @@ import AddVaccineModal from "./AddVaccineModal";
 import AddDosesModal from "./AddDosesModal";
 import FetchedVaccinesTable from "./FetchedVaccinesTable";
 import { useState, useEffect } from "react";
-import { getVaccines } from "../../apiService";
+import { getPatients, getVaccines } from "../../apiService";
 import FindVaccineModal from "./FindVaccineModal";
 import AddPatientModal from "./AddPatientModal";
 import FindPatientModal from "./FindPatientModal";
+import FetchedPatientsTable from "./FetchedPatientsTable";
 
 function Widgets(){
     const location = useLocation();
     const currentPath = location.pathname;
     const [vaccines, setVaccines] = useState([]);
+    const [patients, setPatients] = useState([]);
 
     //Getting the list of vaccines
     const fetchVaccines = async () => {
@@ -23,8 +25,19 @@ function Widgets(){
         }
     }
 
+    //Getting the list of patients
+    const fetchPatients = async () => {
+        try {
+            const response = await getPatients();
+            setPatients(response);
+        } catch (error) {
+            console.error("Error fetching Patients [Widgets.tsx file line 30]", error);
+        }
+    }
+
     useEffect(() =>{
         fetchVaccines();
+        fetchPatients();
     }, []);
 
     const vaccineButtons = [
@@ -46,7 +59,7 @@ function Widgets(){
                 </div>
 
                 <div className="patient-vaccine-table">
-                    {currentPath === "/covid-project/patients" ?  <h1>patients</h1>  : <FetchedVaccinesTable vaccines={vaccines} fetchVaccines={fetchVaccines}/>}
+                    {currentPath === "/covid-project/patients" ?  <FetchedPatientsTable patients={patients}/>  : <FetchedVaccinesTable vaccines={vaccines} fetchVaccines={fetchVaccines}/>}
                 </div>
 
             </div>

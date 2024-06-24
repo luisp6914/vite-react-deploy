@@ -24,13 +24,23 @@ function FindVaccineModal({ onVaccineFound }: FindVaccineModalProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if(!searchId || isNaN(Number(searchId))){
+      alert("Please enter a valid ID number.");
+      return;
+    }
+
     try {
       const result = await getVaccineById(searchId);
-      setSearchResult(result);
-      onVaccineFound(result);
-      setShowModal(true);
+      if(result) {
+        setSearchResult(result);
+        onVaccineFound(result);
+        setShowModal(true);
+      }
+      else{
+        alert("Vaccine Not Found");
+      }
     } catch (error) {
-      alert("Vaccine Not Found");
+      alert("Error Fetching Vaccine");
       console.error(
         "Error Fetching Vaccine by ID [FindVaccineModal.tsx file]",
         error
@@ -80,12 +90,86 @@ function FindVaccineModal({ onVaccineFound }: FindVaccineModalProps) {
             <div className="modal-body">
               {searchResult && (
                 <>
-                  <p>ID: {searchResult.id}</p>
-                  <p>Name: {searchResult.name}</p>
-                  <p>Dose Intervals: {searchResult.doseIntervals}</p>
-                  <p>Doses Received: {searchResult.dosesReceived}</p>
-                  <p>Doses Remaining: {searchResult.dosesRemaining}</p>
-                  <p>Doses Required: {searchResult.dosesRequired}</p>
+                  <div className="form-floating mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPlaintextInputID"
+                      placeholder={`${searchResult.id}`}
+                      name="id"
+                      value={`${searchResult.id}`}
+                    />
+                    <label htmlFor="floatingPlaintextInputID">ID</label>
+                  </div>
+
+                  <div className="form-floating mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPlaintextInputName"
+                      placeholder={`${searchResult.name}`}
+                      name="name"
+                      value={`${searchResult.name}`}
+                    />
+                    <label htmlFor="floatingPlaintextInputNam">Name</label>
+                  </div>
+
+                  <div className="form-floating mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPlaintextInputIntervals"
+                      placeholder={`${searchResult.doseIntervals}`}
+                      name="intervals"
+                      value={`${searchResult.doseIntervals}`}
+                    />
+                    <label htmlFor="floatingPlaintextInputIntervals">
+                      Dose Intervals
+                    </label>
+                  </div>
+
+                  <div className="form-floating mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPlaintextInputReceived"
+                      placeholder={`${searchResult.dosesReceived}`}
+                      name="received"
+                      value={`${searchResult.dosesReceived}`}
+                    />
+                    <label htmlFor="floatingPlaintextInputReceived">
+                      Doses Received
+                    </label>
+                  </div>
+
+                  <div className="form-floating mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPlaintextInputRemaining"
+                      placeholder={`${searchResult.dosesRemaining}`}
+                      name="remaining"
+                      value={`${searchResult.dosesRemaining}`}
+                    />
+                    <label htmlFor="floatingPlaintextInputRemaining">
+                      Doses Remaining
+                    </label>
+                  </div>
+
+                  <label className="col-form-label">Doses Required:</label>
+                  <div className="mb-3">
+                    <div className="form-check form-check-inline">
+                      <input
+                        checked= {true}
+                        type="radio"
+                        className="form-check-input"
+                        id="required"
+                        name="dosesRequired"
+                        value={searchResult.dosesRequired}
+                      />
+                      <label htmlFor="required">{searchResult.dosesRequired}</label>
+                    </div>
+                  </div>
                 </>
               )}
             </div>

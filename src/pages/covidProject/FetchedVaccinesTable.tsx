@@ -34,41 +34,43 @@ function FetchedVaccinesTable({ vaccines, fetchVaccines }: FetchedVaccinesTableP
 
     return (
         <>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Vaccine Name</th>
-                        <th>Dose Intervals</th>
-                        <th>Doses Received</th>
-                        <th>Doses Remaining</th>
-                        <th>Doses Required</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody className="table-group-divider">
-                    {currentVaccines.map((vaccine) => (
-                        <tr key={vaccine.id}>
-                            <td>{vaccine.id}</td>
-                            <td>{vaccine.name}</td>
-                            <td>{vaccine.doseIntervals}</td>
-                            <td>{vaccine.dosesReceived}</td>
-                            <td>{vaccine.dosesRemaining}</td>
-                            <td>{vaccine.dosesRequired}</td>
-                            <td>
-                                <EditVaccineModal
-                                    vaccine={{
-                                        id: vaccine.id,
-                                        name: vaccine.name,
-                                        doseIntervals: vaccine.doseIntervals,
-                                    }}
-                                    onUpdate={fetchVaccines}
-                                />
-                            </td>
+            <div className="table-responsive">
+                <table className="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Vaccine Name</th>
+                            <th>Dose Intervals</th>
+                            <th>Doses Received</th>
+                            <th>Doses Remaining</th>
+                            <th>Doses Required</th>
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody className="table-group-divider">
+                        {currentVaccines.map((vaccine) => (
+                            <tr key={vaccine.id}>
+                                <td>{vaccine.id}</td>
+                                <td>{vaccine.name}</td>
+                                <td>{vaccine.doseIntervals}</td>
+                                <td>{vaccine.dosesReceived}</td>
+                                <td>{vaccine.dosesRemaining}</td>
+                                <td>{vaccine.dosesRequired}</td>
+                                <td>
+                                    <EditVaccineModal
+                                        vaccine={{
+                                            id: vaccine.id,
+                                            name: vaccine.name,
+                                            doseIntervals: vaccine.doseIntervals,
+                                        }}
+                                        onUpdate={fetchVaccines}
+                                    />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <nav>
                 <ul className="pagination justify-content-center">
                     <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
