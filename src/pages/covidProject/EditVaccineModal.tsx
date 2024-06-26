@@ -41,7 +41,7 @@ function EditVaccineModal ({vaccine, onUpdate}: EditVaccineModalProps){
 
     return (
         <>
-            <button type="button" className="btn btn-light edit-btn" data-bs-toggle="modal" data-bs-target={`#editVaccineModal${vaccine.id}`}>
+            <button type="button" className="btn btn-secondary edit-btn" data-bs-toggle="modal" data-bs-target={`#editVaccineModal${vaccine.id}`}>
                 <FontAwesomeIcon icon={faEdit} /> Edit
             </button>
 

@@ -47,8 +47,8 @@ function Widgets(){
     ];
 
     const patientButton = [
-        <AddPatientModal key="addPatientModal"/>,
-        <FindPatientModal key="findPatientModal"/>
+        <AddPatientModal key="addPatientModal" fetchPatients={fetchPatients} fetchVaccines={fetchVaccines} vaccines={vaccines}/>,
+        <FindPatientModal key="findPatientModal" />
     ];
 
     return(
@@ -59,7 +59,7 @@ function Widgets(){
                 </div>
 
                 <div className="patient-vaccine-table">
-                    {currentPath === "/covid-project/patients" ?  <FetchedPatientsTable patients={patients}/>  : <FetchedVaccinesTable vaccines={vaccines} fetchVaccines={fetchVaccines}/>}
+                    {currentPath === "/covid-project/patients" ?  <FetchedPatientsTable fetchPatients={fetchPatients} patients={patients}/>  : <FetchedVaccinesTable vaccines={vaccines} fetchVaccines={fetchVaccines}/>}
                 </div>
 
             </div>

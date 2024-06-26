@@ -12,6 +12,16 @@ export const getPatients = async () =>{
     }
 };
 
+export const addSecondDose = async (patient) =>{
+    //console.log(patient, "[apiService file]");
+    try {
+        const response = await axios.patch(`${baseURL}/patients/secondDose`, patient);
+        return response.date;
+    } catch (error) {
+        console.error("Failed to Add second Dose [apiServices file]", error)
+    }
+}
+
 export const addPatient = async (patientData) => {
     try {
         const response = await axios.post(`${baseURL}/patients`, patientData);

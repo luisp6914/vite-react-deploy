@@ -35,6 +35,7 @@ function AddDosesModal({ fetchVaccines, vaccines }: AddDosesModalProps) {
         await addDoses(selectedVaccine, dosesNum);
         setSelectedVaccine("");
         setDoses("");
+        //Refresh page
         fetchVaccines();
     } catch (error) {
         console.error("Failed to add doses [AddDosesModal.tsx file line 44]", error);

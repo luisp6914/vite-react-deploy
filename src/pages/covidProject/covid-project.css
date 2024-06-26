@@ -59,7 +59,7 @@
 .add-patient-btn, .add-dose-btn, .add-vaccine-btn, .edit-btn{
     width: 10rem;
 }
-.add-dose-btn:hover{
+.add-dose-btn:hover, .addSecondDoseBtn:hover{
     background-color: rgb(219, 143, 0) !important;
 }
 .patient-vaccine-table{
