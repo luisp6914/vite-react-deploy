@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { addDoses } from "../../apiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -17,10 +17,6 @@ function AddDosesModal({ fetchVaccines, vaccines }: AddDosesModalProps) {
   const [selectedVaccine, setSelectedVaccine] = useState("");
   const [doses, setDoses] = useState("");
 
-  /*Fetching the vaccines*/
-  useEffect(() => {
-    fetchVaccines();
-  }, [fetchVaccines]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

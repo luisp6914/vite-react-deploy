@@ -31,6 +31,16 @@ export const addPatient = async (patientData) => {
     }
 };
 
+export const getPatientById = async (id) => {
+    try {
+        console.log("apiServices fiel", id);
+        const response = await axios.get(`${baseURL}/patient/getPatient/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Failed To Get Patient by ID", error);
+    }
+}
+
 export const getVaccines = async () =>{
     try {
         const response = await axios.get(`${baseURL}/vaccines`);
@@ -42,7 +52,7 @@ export const getVaccines = async () =>{
 
 export const getVaccineById = async (id) => {
     try {
-        console.log("apiServices fiel [Line 35]", id);
+        console.log("apiServices fiel ", id);
         const response = await axios.get(`${baseURL}/vaccines/getVaccine/${id}`);
         return response.data;
     } catch (error) {

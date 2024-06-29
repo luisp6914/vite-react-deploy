@@ -1,7 +1,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { addPatient } from "../../apiService";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface Vaccine {
     id: number;
@@ -10,19 +10,14 @@ interface Vaccine {
 
 interface AddPatientModalProps{
     vaccines: Vaccine[]
-    fetchVaccines: () => void;
     fetchPatients: () => void;
 }
 
-function AddPatientModal({vaccines, fetchVaccines, fetchPatients}: AddPatientModalProps){
+function AddPatientModal({vaccines, fetchPatients}: AddPatientModalProps){
     const [patientName, setPatientName] = useState("");
     const [selectedVaccine, setSelectedVaccine] = useState("");
     
     
-    /*Fetching the vaccines*/
-    useEffect(() =>{
-        fetchVaccines();
-    }, [fetchVaccines]);
 
     //Handling the submitted new patient
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

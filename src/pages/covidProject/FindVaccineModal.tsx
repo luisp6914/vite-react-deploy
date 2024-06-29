@@ -98,6 +98,7 @@ function FindVaccineModal({ onVaccineFound }: FindVaccineModalProps) {
                       placeholder={`${searchResult.id}`}
                       name="id"
                       value={`${searchResult.id}`}
+                      readOnly
                     />
                     <label htmlFor="floatingPlaintextInputID">ID</label>
                   </div>
@@ -110,6 +111,7 @@ function FindVaccineModal({ onVaccineFound }: FindVaccineModalProps) {
                       placeholder={`${searchResult.name}`}
                       name="name"
                       value={`${searchResult.name}`}
+                      readOnly
                     />
                     <label htmlFor="floatingPlaintextInputNam">Name</label>
                   </div>
@@ -122,6 +124,7 @@ function FindVaccineModal({ onVaccineFound }: FindVaccineModalProps) {
                       placeholder={`${searchResult.doseIntervals}`}
                       name="intervals"
                       value={`${searchResult.doseIntervals}`}
+                      readOnly
                     />
                     <label htmlFor="floatingPlaintextInputIntervals">
                       Dose Intervals
@@ -136,6 +139,7 @@ function FindVaccineModal({ onVaccineFound }: FindVaccineModalProps) {
                       placeholder={`${searchResult.dosesReceived}`}
                       name="received"
                       value={`${searchResult.dosesReceived}`}
+                      readOnly
                     />
                     <label htmlFor="floatingPlaintextInputReceived">
                       Doses Received
@@ -150,6 +154,7 @@ function FindVaccineModal({ onVaccineFound }: FindVaccineModalProps) {
                       placeholder={`${searchResult.dosesRemaining}`}
                       name="remaining"
                       value={`${searchResult.dosesRemaining}`}
+                      readOnly
                     />
                     <label htmlFor="floatingPlaintextInputRemaining">
                       Doses Remaining
@@ -166,6 +171,7 @@ function FindVaccineModal({ onVaccineFound }: FindVaccineModalProps) {
                         id="required"
                         name="dosesRequired"
                         value={searchResult.dosesRequired}
+                        readOnly
                       />
                       <label htmlFor="required">{searchResult.dosesRequired}</label>
                     </div>

@@ -9,9 +9,8 @@ import AddPatientModal from "./AddPatientModal";
 import FindPatientModal from "./FindPatientModal";
 import FetchedPatientsTable from "./FetchedPatientsTable";
 
-function Widgets(){
-    const location = useLocation();
-    const currentPath = location.pathname;
+const useFetchData = () => {
+    //Fetched Data
     const [vaccines, setVaccines] = useState([]);
     const [patients, setPatients] = useState([]);
 
@@ -23,7 +22,7 @@ function Widgets(){
         } catch (error) {
             console.error("Error fetching vaccines [Widgets.tsx file line 18]", error);
         }
-    }
+    };
 
     //Getting the list of patients
     const fetchPatients = async () => {
@@ -33,12 +32,24 @@ function Widgets(){
         } catch (error) {
             console.error("Error fetching Patients [Widgets.tsx file line 30]", error);
         }
-    }
-
+    };
+    
+    //Using the effect
     useEffect(() =>{
         fetchVaccines();
         fetchPatients();
     }, []);
+
+    //returning lists and the functions
+    return { vaccines, fetchVaccines, patients, fetchPatients };
+};
+
+
+
+function Widgets(){
+    const location = useLocation();
+    const currentPath = location.pathname;
+    const {vaccines, fetchVaccines, patients, fetchPatients} = useFetchData();
 
     const vaccineButtons = [
         <AddVaccineModal key="addVacineModal" onVaccineAdded={fetchVaccines}/>,
@@ -47,8 +58,8 @@ function Widgets(){
     ];
 
     const patientButton = [
-        <AddPatientModal key="addPatientModal" fetchPatients={fetchPatients} fetchVaccines={fetchVaccines} vaccines={vaccines}/>,
-        <FindPatientModal key="findPatientModal" />
+        <AddPatientModal key="addPatientModal" fetchPatients={fetchPatients} vaccines={vaccines}/>,
+        <FindPatientModal key="findPatientModal" onPatientFound={(patient) => console.log("[Widget.tsx file]", patient)}/>
     ];
 
     return(
